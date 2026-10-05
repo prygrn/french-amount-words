@@ -1,10 +1,10 @@
-# Journal des modifications
+# Changelog
 
-Toutes les modifications notables de ce crate sont consignées dans ce fichier.
+All notable changes to this crate are documented in this file.
 
-Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le crate respecte le
-[versionnage sémantique](https://semver.org/lang/fr/). Chaque version publiée correspond au tag
-git `vX.Y.Z`.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this crate
+adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Each published version
+matches the git tag `vX.Y.Z`.
 
 ## [Unreleased]
 
@@ -12,21 +12,24 @@ git `vX.Y.Z`.
 
 ### Added
 
-- Lien vers la documentation docs.rs dans les métadonnées du paquet.
-- README : badges (version, documentation, licence, CI).
-- README : positionnement par rapport aux crates `french-numbers` et `nb2fr`.
+- Link to the docs.rs documentation in the package metadata.
+- README: badges (version, documentation, license, CI).
+- README: positioning relative to the `french-numbers` and `nb2fr` crates.
+
+### Changed
+
+- Documentation translated to English.
 
 ## [0.1.0] - 2026-10-05
 
 ### Added
 
-- `number_to_words` : écriture en toutes lettres d'un entier, en graphie traditionnelle.
-- `euro_amount_to_words` : écriture en toutes lettres d'un montant en euros exprimé en
-  centimes.
-- `MAX_VALUE` : plus grande valeur convertible (`999_999_999_999`).
-- `AmountWordsError::ValueTooLarge` : erreur renvoyée au-delà de `MAX_VALUE`.
-- `AmountWordsError` est `#[non_exhaustive]` : un `match` hors du crate doit prévoir un bras `_`,
-  ce qui permet d'ajouter des variantes sans rupture de compatibilité.
+- `number_to_words`: spells out an integer in words, following the traditional spelling.
+- `euro_amount_to_words`: spells out in words a euro amount given in cents.
+- `MAX_VALUE`: largest convertible value (`999_999_999_999`).
+- `AmountWordsError::ValueTooLarge`: error returned above `MAX_VALUE`.
+- `AmountWordsError` is `#[non_exhaustive]`: a `match` outside the crate must include a `_`
+  arm, which allows adding variants without breaking compatibility.
 
 [Unreleased]: https://github.com/prygrn/french-amount-words/compare/v0.1.1...HEAD
 [0.1.1]: https://github.com/prygrn/french-amount-words/compare/v0.1.0...v0.1.1

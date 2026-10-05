@@ -121,7 +121,7 @@ When code dispatches asynchronous work, test that it is dispatched and that it p
 
 ## Project — language
 
-Write comments and documentation in French.
+Write comments and documentation in English.
 Keep code, identifiers, and technical terms in their original form.
 
 ## Project — rust

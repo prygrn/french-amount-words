@@ -2,19 +2,19 @@
 
 [![crates.io](https://img.shields.io/crates/v/french-amount-words.svg)](https://crates.io/crates/french-amount-words)
 [![docs.rs](https://docs.rs/french-amount-words/badge.svg)](https://docs.rs/french-amount-words)
-[![Licence : MIT](https://img.shields.io/crates/l/french-amount-words.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/crates/l/french-amount-words.svg)](LICENSE)
 [![CI](https://github.com/prygrn/french-amount-words/actions/workflows/ci.yml/badge.svg)](https://github.com/prygrn/french-amount-words/actions/workflows/ci.yml)
 
-Écriture en toutes lettres des nombres entiers et des montants en euros, en français, selon la
-graphie traditionnelle.
+Spells out integers and euro amounts in French words, following the traditional spelling.
 
-Le crate est autonome : il ne dépend d'aucune autre bibliothèque que la bibliothèque standard.
-Il sert typiquement à reporter une somme en lettres sur une quittance, une facture ou un chèque.
+The crate is self-contained: it depends on nothing but the standard library.
+A typical use is writing a sum out in words on a rent receipt, an invoice or a cheque.
 
-Sa spécificité est l'écriture des montants en euros (« un million d'euros », « un euro », « cinquante
-centimes »…). Pour écrire des nombres entiers en général, voir aussi
-[`french-numbers`](https://crates.io/crates/french-numbers) (MIT/Apache-2.0, graphies avant et
-après la réforme de 1990, féminin) ou [`nb2fr`](https://crates.io/crates/nb2fr) (GPL-3.0).
+What sets it apart is the spelling of euro amounts ("un million d'euros", "un euro",
+"cinquante centimes"…). To spell out integers in general, see also
+[`french-numbers`](https://crates.io/crates/french-numbers) (MIT/Apache-2.0, spellings from
+before and after the 1990 reform, feminine forms) or [`nb2fr`](https://crates.io/crates/nb2fr)
+(GPL-3.0).
 
 ## Installation
 
@@ -32,7 +32,7 @@ fn main() -> Result<(), AmountWordsError> {
     assert_eq!(number_to_words(80)?, "quatre-vingts");
     assert_eq!(number_to_words(2_000_000)?, "deux millions");
 
-    // Les montants sont exprimés en centimes pour éviter les flottants.
+    // Amounts are given in cents to avoid floating-point numbers.
     assert_eq!(
         euro_amount_to_words(123_456)?,
         "mille deux cent trente-quatre euros et cinquante-six centimes"
@@ -44,49 +44,49 @@ fn main() -> Result<(), AmountWordsError> {
 }
 ```
 
-## Borne maximale
+## Upper bound
 
-La constante `MAX_VALUE` vaut `999_999_999_999` (neuf cent quatre-vingt-dix-neuf milliards…).
+The constant `MAX_VALUE` is `999_999_999_999` ("neuf cent quatre-vingt-dix-neuf milliards…").
 
-- `number_to_words` renvoie `AmountWordsError::ValueTooLarge` au-delà de `MAX_VALUE`.
-- `euro_amount_to_words` renvoie la même erreur quand la partie en euros dépasse `MAX_VALUE` ;
-  le champ `value` de l'erreur contient alors la partie en euros, et non l'entrée en centimes.
+- `number_to_words` returns `AmountWordsError::ValueTooLarge` above `MAX_VALUE`.
+- `euro_amount_to_words` returns the same error when the euro part exceeds `MAX_VALUE`;
+  the error's `value` field then holds the euro part, not the input in cents.
 
-## Règles d'orthographe appliquées
+## Spelling rules applied
 
-La graphie suivie est la graphie traditionnelle décrite par l'Académie française, et non celle
-des rectifications orthographiques de 1990 (qui lient tous les éléments par des traits d'union).
+The crate follows the traditional spelling described by the Académie française, not the 1990
+spelling reform (which joins every element with hyphens).
 
-- Trait d'union uniquement entre les éléments inférieurs à cent : `vingt-deux`, `dix-sept`,
-  `quatre-vingt-dix-neuf`, mais `deux cent un`, `mille cent`.
-- « et » sans trait d'union pour 21, 31, 41, 51, 61 et 71 : `vingt et un`, `soixante et onze`.
-  Pas de « et » pour 81 et 91 : `quatre-vingt-un`, `quatre-vingt-onze`.
-- `vingt` et `cent` prennent un « s » quand ils sont multipliés et terminent le nombre :
-  `quatre-vingts`, `deux cents`, mais `quatre-vingt-un`, `deux cent un`.
-- Devant `mille`, adjectif numéral, ils restent invariables : `quatre-vingt mille`,
+- Hyphens only between elements below one hundred: `vingt-deux`, `dix-sept`,
+  `quatre-vingt-dix-neuf`, but `deux cent un`, `mille cent`.
+- "et" (and), without hyphens, for 21, 31, 41, 51, 61 and 71: `vingt et un`,
+  `soixante et onze`. No "et" for 81 and 91: `quatre-vingt-un`, `quatre-vingt-onze`.
+- `vingt` (twenty) and `cent` (hundred) take an "s" when they are multiplied and end the
+  number: `quatre-vingts`, `deux cents`, but `quatre-vingt-un`, `deux cent un`.
+- Before `mille` (thousand), a numeral adjective, they stay invariable: `quatre-vingt mille`,
   `deux cent mille`.
-- `mille` est invariable et n'est jamais précédé de « un » : `mille`, `deux mille`.
-  De même, `cent` n'est jamais précédé de « un ».
-- `million` et `milliard` sont des noms : ils prennent la marque du pluriel et n'empêchent pas
-  l'accord de `vingt` et `cent` : `un million`, `deux millions`, `quatre-vingts millions`,
+- `mille` is invariable and is never preceded by "un" (one): `mille`, `deux mille`.
+  Likewise, `cent` is never preceded by "un".
+- `million` and `milliard` (billion) are nouns: they take the plural mark and do not prevent
+  `vingt` and `cent` from agreeing: `un million`, `deux millions`, `quatre-vingts millions`,
   `deux cents milliards`.
-- Montants en euros :
-  - `euro` et `centime` restent au singulier pour zéro et un : `zéro euro`, `un euro`,
-    `un centime` ;
-  - « zéro centime » n'est jamais écrit (`deux euros`) et « zéro euro » non plus quand il y a
-    des centimes (`cinquante centimes`) ;
-  - après `million` ou `milliard` terminant la partie en euros, on écrit « d'euros » :
-    `un million d'euros`, mais `un million deux cents euros`.
+- Euro amounts:
+  - `euro` and `centime` (cent) stay singular for zero and one: `zéro euro`, `un euro`,
+    `un centime`;
+  - "zéro centime" is never written (`deux euros`), nor is "zéro euro" when there are
+    cents (`cinquante centimes`);
+  - after `million` or `milliard` ending the euro part, the unit becomes "d'euros" (of
+    euros): `un million d'euros`, but `un million deux cents euros`.
 
-## Développement
+## Development
 
 ```sh
 git clone --recurse-submodules https://github.com/prygrn/french-amount-words.git
 cd french-amount-words
-make setup  # installe les hooks git
-make test   # tests unitaires et doctests
+make setup  # installs the git hooks
+make test   # unit tests and doctests
 ```
 
-## Licence
+## License
 
-MIT, voir le fichier `LICENSE`.
+MIT, see the `LICENSE` file.

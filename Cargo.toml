@@ -1,7 +1,7 @@
 [package]
 name = "french-amount-words"
 version = "0.1.1"
-description = "Écriture en toutes lettres des nombres et des montants en euros, en français (graphie traditionnelle)"
+description = "Spells out numbers and euro amounts in French words (traditional spelling)"
 edition = "2024"
 rust-version = "1.88"
 license = "MIT"
