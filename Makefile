@@ -1,4 +1,4 @@
-# Point d'entrée unique des commandes de développement, partagé par le hook git et la CI.
+# Single entry point for development commands, shared by the git hook and the CI.
 .PHONY: setup format fmt-check lint quality test-unit test msrv-version msrv-check
 
 setup:
@@ -22,13 +22,13 @@ test-unit:
 
 test: test-unit
 
-# Affiche le rust-version déclaré dans Cargo.toml ; échoue s'il est introuvable.
+# Prints the rust-version declared in Cargo.toml; fails if it is missing.
 msrv-version:
 	@v=$$(sed -n 's/^rust-version = "\(.*\)"/\1/p' Cargo.toml); \
-	if [ -z "$$v" ]; then echo "msrv-version: rust-version introuvable dans Cargo.toml" >&2; exit 1; fi; \
+	if [ -z "$$v" ]; then echo "msrv-version: rust-version not found in Cargo.toml" >&2; exit 1; fi; \
 	echo "$$v"
 
-# Vérifie la compilation avec le rust-version déclaré dans Cargo.toml (requiert rustup).
+# Checks that the crate compiles with the rust-version declared in Cargo.toml (requires rustup).
 msrv-check:
 	@v=$$($(MAKE) -s msrv-version) || exit 1; \
 	cargo +$$v check --all-targets --locked
