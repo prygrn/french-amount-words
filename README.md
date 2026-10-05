@@ -1,10 +1,20 @@
 # french-amount-words
 
+[![crates.io](https://img.shields.io/crates/v/french-amount-words.svg)](https://crates.io/crates/french-amount-words)
+[![docs.rs](https://docs.rs/french-amount-words/badge.svg)](https://docs.rs/french-amount-words)
+[![Licence : MIT](https://img.shields.io/crates/l/french-amount-words.svg)](LICENSE)
+[![CI](https://github.com/prygrn/french-amount-words/actions/workflows/ci.yml/badge.svg)](https://github.com/prygrn/french-amount-words/actions/workflows/ci.yml)
+
 Écriture en toutes lettres des nombres entiers et des montants en euros, en français, selon la
 graphie traditionnelle.
 
 Le crate est autonome : il ne dépend d'aucune autre bibliothèque que la bibliothèque standard.
 Il sert typiquement à reporter une somme en lettres sur une quittance, une facture ou un chèque.
+
+Sa spécificité est l'écriture des montants en euros (« un million d'euros », « un euro », « cinquante
+centimes »…). Pour écrire des nombres entiers en général, voir aussi
+[`french-numbers`](https://crates.io/crates/french-numbers) (MIT/Apache-2.0, graphies avant et
+après la réforme de 1990, féminin) ou [`nb2fr`](https://crates.io/crates/nb2fr) (GPL-3.0).
 
 ## Installation
 
