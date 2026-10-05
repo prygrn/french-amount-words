@@ -1,11 +1,12 @@
 [package]
 name = "french-amount-words"
-version = "0.1.0"
+version = "0.1.1"
 description = "Écriture en toutes lettres des nombres et des montants en euros, en français (graphie traditionnelle)"
 edition = "2024"
 rust-version = "1.88"
 license = "MIT"
 repository = "https://github.com/prygrn/french-amount-words"
+documentation = "https://docs.rs/french-amount-words"
 readme = "README.md"
 keywords = ["french", "numbers", "words", "euro", "amount"]
 categories = ["localization", "value-formatting", "finance"]

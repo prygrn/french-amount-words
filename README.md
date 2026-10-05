@@ -6,6 +6,11 @@ graphie traditionnelle.
 Le crate est autonome : il ne dépend d'aucune autre bibliothèque que la bibliothèque standard.
 Il sert typiquement à reporter une somme en lettres sur une quittance, une facture ou un chèque.
 
+Sa spécificité est l'écriture des montants en euros (« un million d'euros », « un euro », « cinquante
+centimes »…). Pour écrire des nombres entiers en général, voir aussi
+[`french-numbers`](https://crates.io/crates/french-numbers) (MIT/Apache-2.0, graphies avant et
+après la réforme de 1990, féminin) ou [`nb2fr`](https://crates.io/crates/nb2fr) (GPL-3.0).
+
 ## Installation
 
 ```sh
