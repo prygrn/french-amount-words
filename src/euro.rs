@@ -2,23 +2,23 @@ use crate::AmountWordsError;
 use crate::number::{MILLION, number_to_words};
 
 const CENTS_PER_EURO: u64 = 100;
-/// Zéro et un gouvernent le singulier : zéro euro, un euro, un centime.
+/// Zero and one take the singular: "zéro euro", "un euro", "un centime".
 const LARGEST_SINGULAR_QUANTITY: u64 = 1;
 
 const EURO_SINGULAR: &str = "euro";
 const EURO_PLURAL: &str = "euros";
-/// Après « million » ou « milliard », noms, le complément se construit avec « de ».
+/// "million" and "milliard" are nouns, so the unit after them is introduced by "de" (of).
 const EURO_AFTER_SCALE_NOUN: &str = "d'euros";
 const CENTIME_SINGULAR: &str = "centime";
 const CENTIME_PLURAL: &str = "centimes";
 
-/// Écrit un montant exprimé en centimes d'euro en toutes lettres.
+/// Spells out in words an amount given in euro cents.
 ///
 /// # Errors
 ///
-/// Renvoie [`AmountWordsError::ValueTooLarge`] si la partie en euros dépasse
-/// [`crate::MAX_VALUE`] ; le champ `value` de l'erreur contient alors cette partie en
-/// euros, et non `cents`.
+/// Returns [`AmountWordsError::ValueTooLarge`] if the euro part exceeds
+/// [`crate::MAX_VALUE`]; the error's `value` field then holds that euro part, not
+/// `cents`.
 pub fn euro_amount_to_words(cents: u64) -> Result<String, AmountWordsError> {
     let euros = cents / CENTS_PER_EURO;
     let remaining_cents = cents % CENTS_PER_EURO;

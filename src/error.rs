@@ -2,10 +2,10 @@ use std::fmt;
 
 use crate::MAX_VALUE;
 
-/// Échec de conversion d'un nombre ou d'un montant en lettres.
+/// Failure to spell out a number or an amount in words.
 ///
-/// Un `match` hors du crate doit prévoir un bras `_`, afin que de nouvelles variantes puissent
-/// être ajoutées sans rupture de compatibilité :
+/// A `match` outside the crate must include a `_` arm, so that new variants can be added
+/// without breaking compatibility:
 ///
 /// ```compile_fail,E0004
 /// use french_amount_words::AmountWordsError;
@@ -19,10 +19,10 @@ use crate::MAX_VALUE;
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[non_exhaustive]
 pub enum AmountWordsError {
-    /// La valeur dépasse [`crate::MAX_VALUE`].
+    /// The value exceeds [`crate::MAX_VALUE`].
     ValueTooLarge {
-        /// Valeur comparée à [`crate::MAX_VALUE`] : l'entrée de [`crate::number_to_words`],
-        /// mais la partie en euros (et non l'entrée en centimes) pour
+        /// Value compared with [`crate::MAX_VALUE`]: the input of [`crate::number_to_words`],
+        /// but the euro part (not the input in cents) for
         /// [`crate::euro_amount_to_words`].
         value: u64,
     },

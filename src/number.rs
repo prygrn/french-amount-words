@@ -13,20 +13,20 @@ const THOUSAND_WORD: &str = "mille";
 const PLURAL_MARK: &str = "s";
 const WORD_SEPARATOR: &str = " ";
 
-/// Mots de 0 à 19, indexés par leur valeur ; zéro n'apparaît jamais dans un nombre composé.
+/// Words from 0 to 19, indexed by their value; zero never appears in a compound number.
 const BELOW_TWENTY_WORDS: [&str; 20] = [
     "", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix", "onze",
     "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf",
 ];
 
-/// Restes joints par « et » après une dizaine : vingt et un, soixante et onze.
+/// Remainders joined to a ten by "et" (and): "vingt et un", "soixante et onze".
 const REMAINDERS_JOINED_WITH_ET: [u64; 2] = [1, 11];
 
-/// « quatre-vingt » multiplie « vingt » : il prend le pluriel et refuse « et ».
+/// "quatre-vingt" multiplies "vingt": it takes the plural and never takes "et".
 const MULTIPLIED_VINGT: u64 = 80;
 
-/// Dizaines de base par valeur croissante ; 70 et 90 se forment sur soixante et
-/// quatre-vingt suivis de 10 à 19, d'où l'absence de bases à 70 et 90.
+/// Base tens in increasing order; 70 and 90 are built from "soixante" and
+/// "quatre-vingt" followed by 10 to 19, hence no base for 70 and 90.
 const TENS: [(u64, &str); 6] = [
     (20, "vingt"),
     (30, "trente"),
@@ -36,11 +36,11 @@ const TENS: [(u64, &str); 6] = [
     (MULTIPLIED_VINGT, "quatre-vingt"),
 ];
 
-/// Noms d'échelle : contrairement à « mille », ils s'accordent et laissent vingt et cent
-/// s'accorder devant eux.
+/// Scale nouns: unlike "mille", they agree in number and let "vingt" and "cent" agree
+/// before them.
 const SCALE_NOUNS: [(u64, &str); 2] = [(MILLIARD, "milliard"), (MILLION, "million")];
 
-/// Nombre grammatical d'un mot, qui décide de sa marque du pluriel.
+/// Grammatical number of a word, which decides its plural mark.
 #[derive(Clone, Copy)]
 enum GrammaticalNumber {
     Singular,
@@ -64,11 +64,11 @@ impl GrammaticalNumber {
     }
 }
 
-/// Écrit un nombre entier en toutes lettres, en graphie traditionnelle.
+/// Spells out an integer in words, following the traditional spelling.
 ///
 /// # Errors
 ///
-/// Renvoie [`AmountWordsError::ValueTooLarge`] si `value` dépasse [`crate::MAX_VALUE`].
+/// Returns [`AmountWordsError::ValueTooLarge`] if `value` exceeds [`crate::MAX_VALUE`].
 pub fn number_to_words(value: u64) -> Result<String, AmountWordsError> {
     if value > MAX_VALUE {
         return Err(AmountWordsError::ValueTooLarge { value });
@@ -93,8 +93,8 @@ pub fn number_to_words(value: u64) -> Result<String, AmountWordsError> {
     match thousands {
         0 => {}
         1 => parts.push(THOUSAND_WORD.to_owned()),
-        // Devant « mille », adjectif numéral, vingt et cent restent invariables :
-        // quatre-vingt mille, deux cent mille.
+        // Before "mille", a numeral adjective, "vingt" and "cent" stay invariable:
+        // "quatre-vingt mille", "deux cent mille".
         _ => parts.push(format!(
             "{} {THOUSAND_WORD}",
             group_words(thousands, GrammaticalNumber::Singular)
@@ -109,8 +109,8 @@ pub fn number_to_words(value: u64) -> Result<String, AmountWordsError> {
     Ok(parts.join(WORD_SEPARATOR))
 }
 
-/// Écrit un groupe de 1 à 999 ; `ending_number` est le nombre que prennent « vingt » et
-/// « cent » multipliés quand ils terminent le groupe.
+/// Spells out a group from 1 to 999; `ending_number` is the grammatical number that
+/// multiplied "vingt" and "cent" take when they end the group.
 fn group_words(value: u64, ending_number: GrammaticalNumber) -> String {
     let hundreds = value / HUNDRED;
     let below_hundred = value % HUNDRED;
@@ -139,7 +139,7 @@ fn group_words(value: u64, ending_number: GrammaticalNumber) -> String {
     parts.join(WORD_SEPARATOR)
 }
 
-/// Écrit un nombre de 1 à 99, en liant dizaines et unités par un trait d'union ou par « et ».
+/// Spells out a number from 1 to 99, joining tens and units with a hyphen or with "et".
 fn below_hundred_words(value: u64, ending_number: GrammaticalNumber) -> String {
     let Some(&(tens_value, tens_word)) = TENS
         .iter()
