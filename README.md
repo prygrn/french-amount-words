@@ -1,5 +1,10 @@
 # french-amount-words
 
+[![crates.io](https://img.shields.io/crates/v/french-amount-words.svg)](https://crates.io/crates/french-amount-words)
+[![docs.rs](https://docs.rs/french-amount-words/badge.svg)](https://docs.rs/french-amount-words)
+[![Licence : MIT](https://img.shields.io/crates/l/french-amount-words.svg)](LICENSE)
+[![CI](https://github.com/prygrn/french-amount-words/actions/workflows/ci.yml/badge.svg)](https://github.com/prygrn/french-amount-words/actions/workflows/ci.yml)
+
 Écriture en toutes lettres des nombres entiers et des montants en euros, en français, selon la
 graphie traditionnelle.
 

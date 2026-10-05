@@ -13,6 +13,7 @@ git `vX.Y.Z`.
 ### Added
 
 - Lien vers la documentation docs.rs dans les métadonnées du paquet.
+- README : badges (version, documentation, licence, CI).
 - README : positionnement par rapport aux crates `french-numbers` et `nb2fr`.
 
 ## [0.1.0] - 2026-10-05
