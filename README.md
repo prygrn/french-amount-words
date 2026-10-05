@@ -68,6 +68,15 @@ des rectifications orthographiques de 1990 (qui lient tous les éléments par de
   - après `million` ou `milliard` terminant la partie en euros, on écrit « d'euros » :
     `un million d'euros`, mais `un million deux cents euros`.
 
+## Développement
+
+```sh
+git clone --recurse-submodules https://github.com/prygrn/french-amount-words.git
+cd french-amount-words
+make setup  # installe les hooks git
+make test   # tests unitaires et doctests
+```
+
 ## Licence
 
 MIT, voir le fichier `LICENSE`.
