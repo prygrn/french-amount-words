@@ -4,7 +4,7 @@ Toutes les modifications notables de ce crate sont consignées dans ce fichier.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le crate respecte le
 [versionnage sémantique](https://semver.org/lang/fr/). Chaque version publiée correspond au tag
-git `french-amount-words-vX.Y.Z`.
+git `vX.Y.Z`.
 
 ## [Unreleased]
 
@@ -18,4 +18,4 @@ git `french-amount-words-vX.Y.Z`.
 - `AmountWordsError` est `#[non_exhaustive]` : un `match` hors du crate doit prévoir un bras `_`,
   ce qui permet d'ajouter des variantes sans rupture de compatibilité.
 
-[Unreleased]: https://github.com/prygrn/quittance-rs/commits/master/crates/french-amount-words
+[Unreleased]: https://github.com/prygrn/french-amount-words/commits/master
