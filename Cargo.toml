@@ -9,7 +9,7 @@ repository = "https://github.com/prygrn/french-amount-words"
 readme = "README.md"
 keywords = ["french", "numbers", "words", "euro", "amount"]
 categories = ["localization", "value-formatting", "finance"]
-include = ["src/**", "README.md", "LICENSE", "CHANGELOG.md"]
+include = ["/src/**", "/README.md", "/LICENSE", "/CHANGELOG.md"]
 
 [lints.rust]
 unsafe_code = "forbid"
