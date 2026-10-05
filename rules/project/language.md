@@ -1,2 +1,2 @@
-Write comments and documentation in French.
+Write comments and documentation in English.
 Keep code, identifiers, and technical terms in their original form.
